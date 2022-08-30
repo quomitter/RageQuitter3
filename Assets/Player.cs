@@ -20,13 +20,14 @@ public class Player : MonoBehaviour
     [SerializeField] bool jumping;
     [SerializeField] bool isGrounded;
     [SerializeField] int jumpCounter;
-    [SerializeField] bool canDoubleJump;
+    [SerializeField] public bool canDoubleJump;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-        canDoubleJump = true; 
+        canDoubleJump = false; 
         jumpCounter = 0; 
         isGrounded = false;
         jumping = false;

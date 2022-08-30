@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DoubleJump : MonoBehaviour
 {
+    Player player;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -20,7 +22,7 @@ public class DoubleJump : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            Debug.Log("Double Jump Activated.");
+            player.canDoubleJump = true; 
             this.gameObject.SetActive(false);
         }
     }
