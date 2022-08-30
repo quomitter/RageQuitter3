@@ -33,16 +33,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
-            jumping = true;
-            jumpTime = 0; 
-            
-        }
-        if (jumping && isGrounded)
-        {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        { 
             rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
-            jumpTime += Time.deltaTime;
         }
         if (Input.GetButtonUp("Jump") | jumpTime > buttonTime)
         {
