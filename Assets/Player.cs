@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Rigidbody2D rb;
+    SpriteRenderer rbSprite;
 
     [SerializeField] float jumpForce;
     [SerializeField] float moveSpeed;
@@ -19,6 +20,9 @@ public class Player : MonoBehaviour
     {
         jumping = false;
         rb = GetComponent<Rigidbody2D>();
+        rbSprite = GetComponent<SpriteRenderer>(); 
+
+
     }
 
     // Update is called once per frame
@@ -41,6 +45,14 @@ public class Player : MonoBehaviour
         }
 
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y) ;
+        if(rb.velocity.x < 0f)
+        {
+            rbSprite.flipX = true;
+        }
+        else
+        {
+            rbSprite.flipX = false;
+        }
 
         Camera.main.transform.position = rb.transform.position + new Vector3(0,0,-10);
     }
