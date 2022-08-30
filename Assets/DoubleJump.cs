@@ -21,7 +21,7 @@ public class DoubleJump : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             Debug.Log("Double Jump Activated.");
-            this.enabled = false;
+            this.gameObject.SetActive(false);
         }
     }
 }
