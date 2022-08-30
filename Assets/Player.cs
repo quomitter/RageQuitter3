@@ -70,7 +70,7 @@ public class Player : MonoBehaviour
         if(rb.velocity.x < 0f)
         {
             rbSprite.flipX = true;
-            Instantiate(feetDust, dustPos.transform.position + new Vector3(0.6f, 0, 0), dustPos.transform.rotation);
+            Instantiate(feetDust, dustPos.transform.position + new Vector3(0.7f, 0, 0), dustPos.transform.rotation);
         }
         else
         {
