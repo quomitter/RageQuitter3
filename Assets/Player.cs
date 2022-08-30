@@ -16,12 +16,16 @@ public class Player : MonoBehaviour
     [SerializeField] float jumpAmount = 20;
     [SerializeField] float jumpTime;
     [SerializeField] bool jumping;
-    [SerializeField] bool isGrounded; 
+    [SerializeField] bool isGrounded;
+    [SerializeField] int jumpCounter;
+    [SerializeField] bool canDoubleJump;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        canDoubleJump = true; 
+        jumpCounter = 0; 
         isGrounded = false;
         jumping = false;
         rb = GetComponent<Rigidbody2D>();
@@ -33,9 +37,27 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (canDoubleJump) 
         { 
-            rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+            if (Input.GetButtonDown("Jump") && (isGrounded || jumpCounter < 1))
+            { 
+                rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+                jumpCounter++;
+
+            }
+        }
+        if (!canDoubleJump)
+        {
+            if (Input.GetButtonDown("Jump") && (isGrounded || jumpCounter < 0))
+            {
+                rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
+                jumpCounter++;
+
+            }
+        }
+        if (isGrounded)
+        {
+            jumpCounter = 0;
         }
         if (Input.GetButtonUp("Jump") | jumpTime > buttonTime)
         {
