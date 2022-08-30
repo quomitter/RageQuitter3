@@ -8,7 +8,9 @@ public class Player : MonoBehaviour
     SpriteRenderer rbSprite;
 
     [SerializeField] Transform groundCheck;
-    [SerializeField] LayerMask whatIsGround; 
+    [SerializeField] Transform dustPos;
+    [SerializeField] LayerMask whatIsGround;
+    [SerializeField] GameObject feetDust; 
 
     [SerializeField] float jumpForce;
     [SerializeField] float moveSpeed;
@@ -68,10 +70,12 @@ public class Player : MonoBehaviour
         if(rb.velocity.x < 0f)
         {
             rbSprite.flipX = true;
+            Instantiate(feetDust, dustPos.transform.position + new Vector3(0.6f, 0, 0), dustPos.transform.rotation);
         }
         else
         {
             rbSprite.flipX = false;
+            Instantiate(feetDust, dustPos.transform.position, dustPos.transform.rotation);
         }
 
         Camera.main.transform.position = rb.transform.position + new Vector3(0,0,-10);
