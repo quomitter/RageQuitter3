@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     [SerializeField] bool isGrounded;
     [SerializeField] int jumpCounter;
     [SerializeField] public bool canDoubleJump;
+    [SerializeField] public bool canDash;
 
 
 
