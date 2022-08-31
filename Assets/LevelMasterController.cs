@@ -40,9 +40,12 @@ public class LevelMasterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.anyKeyDown || keyHasBeenPressed){
+        if(Input.anyKeyDown){
+            keyHasBeenPressed = true;
+        }
+
+        if(keyHasBeenPressed && anyKeyCanvasGroup.alpha > 0){
                 anyKeyCanvasGroup.alpha -= Time.deltaTime;
-                keyHasBeenPressed = true; 
                 if(anyKeyCanvasGroup.alpha <= 0)
                     keyHasBeenPressed = false; 
 
