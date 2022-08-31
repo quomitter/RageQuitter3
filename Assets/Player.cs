@@ -12,12 +12,10 @@ public class Player : MonoBehaviour
     [SerializeField] LayerMask whatIsGround;
     [SerializeField] GameObject feetDust; 
 
-    [SerializeField] float jumpForce;
     [SerializeField] float moveSpeed;
-    [SerializeField] float buttonTime = 0.3f;
     [SerializeField] float jumpAmount = 20;
     [SerializeField] float jumpTime;
-    [SerializeField] bool jumping;
+   
     [SerializeField] bool isGrounded;
     [SerializeField] int jumpCounter;
     [SerializeField] public bool canDoubleJump;
@@ -31,7 +29,7 @@ public class Player : MonoBehaviour
         canDoubleJump = false; 
         jumpCounter = 0; 
         isGrounded = false;
-        jumping = false;
+       
         rb = GetComponent<Rigidbody2D>();
         rbSprite = GetComponent<SpriteRenderer>(); 
 
@@ -63,10 +61,10 @@ public class Player : MonoBehaviour
         {
             jumpCounter = 0;
         }
-        if (Input.GetButtonUp("Jump") | jumpTime > buttonTime)
-        {
-            jumping = false;
-        }
+        // if (Input.GetButtonUp("Jump") | jumpTime > buttonTime)
+        // {
+        //     jumping = false;
+        // }
 
         rb.velocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y) ;
         if(rb.velocity.x < 0f)
