@@ -5,40 +5,45 @@ using UnityEngine.UI;
 
 public class LevelMasterController : MonoBehaviour
 {
-    [SerializeField] CanvasGroup masterCanvasGroup; 
-    [SerializeField] GameObject masterCanvas; 
+    [SerializeField] CanvasGroup anyKeyCanvasGroup;
+    [SerializeField] CanvasGroup titleScreenCanvasGroup; 
+    [SerializeField] GameObject AnyKeyCanvas; 
     [SerializeField] Image masterPanel; 
 
     [SerializeField] GameObject levelOne;
     [SerializeField] GameObject levelTwo;
     [SerializeField] GameObject player;
 
-    [SerializeField] bool keyHasBeenPressed; 
+    [SerializeField] bool keyHasBeenPressed;
+    private bool isOnTitleScreen;
+    private bool isOnAnyKeyScreen;
+
     // Start is called before the first frame update
     void Start()
     {
+        isOnTitleScreen = true;
+        isOnAnyKeyScreen = false;
         keyHasBeenPressed = false;
-        masterCanvas = GameObject.Find("MasterCanvas");
-        masterCanvasGroup = GameObject.Find("MasterCanvas").GetComponent<CanvasGroup>();
-        masterPanel = GameObject.Find("MasterPanel").GetComponent<Image>();
+        AnyKeyCanvas = GameObject.Find("AnyKeyCanvas");
+        anyKeyCanvasGroup = GameObject.Find("AnyKeyCanvas").GetComponent<CanvasGroup>();
+        //titleScreenCanvasGroup = GameObject.Find("TitleScreenCanvas").GetComponent<CanvasGroup>();
         levelOne = GameObject.Find("LevelOne");
         levelTwo = GameObject.Find("LevelTwo");
         player = GameObject.Find("Player");
 
-        masterCanvas.SetActive(true);
+        AnyKeyCanvas.SetActive(true);
         levelOne.SetActive(true);
         levelTwo.SetActive(true);
         levelTwo.SetActive(false);
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if(Input.anyKeyDown || keyHasBeenPressed){
-                float fadeTimer =+ Time.deltaTime;
-                masterCanvasGroup.alpha -= Time.deltaTime;
+                anyKeyCanvasGroup.alpha -= Time.deltaTime;
                 keyHasBeenPressed = true; 
-                if(masterCanvasGroup.alpha <= 0)
+                if(anyKeyCanvasGroup.alpha <= 0)
                     keyHasBeenPressed = false; 
 
         }
